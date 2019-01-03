@@ -2,7 +2,7 @@
 
 | LANGUAGE | FILENAME | COMMAND |
 |--------|----|-----|
-|python|steg-cracker.py|picture.jpg
+|python 3|steg-cracker.py|picture.jpg
 ||c1a01b3e2cd3e2bd669edcd503fa45fc - md5||
 
 Python script file bundle to decrypt hidden data stored in images. 
