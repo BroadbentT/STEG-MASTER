@@ -7,6 +7,11 @@
 
 - [ ] Significant Bit - Still under development
 
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
+
 Python script file to decrypt hidden data stored within images.
 
 Contains a range of tools used in the black art of steganography, tools that can be used seperately or via the master control program.
