@@ -7,7 +7,7 @@
 
 - [ ] Significant Bit - Still under development.
 
-\
+\\
 
 Python script file to decrypt hidden data stored within images.
 
