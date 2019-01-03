@@ -1,9 +1,0 @@
-./info/
-./data/
-./tran/
-./mask-1/
-./mask-2/
-./tidy/
-./stat/
-./diff/
-
