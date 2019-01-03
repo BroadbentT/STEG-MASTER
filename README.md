@@ -1,6 +1,8 @@
 # PROJECT STEG-MASTER
 
-python steg-cracker.py picture.jpg
+|LANGUAGE|FILE|IMAGE|
+|--------|----|-----|
+|python|steg-cracker.py\picture.jpg
 
 
 
