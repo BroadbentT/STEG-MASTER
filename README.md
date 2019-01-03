@@ -3,7 +3,7 @@
 |LANGUAGE|FILENAME|IMAGE|
 |--------|----|-----|
 |python|steg-cracker.py|picture.jpg
-|c1a01b3e2cd3e2bd669edcd503fa45fc - MD5|
+|c1a01b3e2cd3e2bd669edcd503fa45fc - MD5|||
 
 
 
