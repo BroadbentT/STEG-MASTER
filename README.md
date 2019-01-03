@@ -1,8 +1,10 @@
 # PROJECT STEG-MASTER
 
-|LANGUAGE|FILE|IMAGE|
+|LANGUAGE|FILENAME|IMAGE|
 |--------|----|-----|
 |python|steg-cracker.py|picture.jpg
+
+FILENAME =  SHA-1 hash
 
 
 
