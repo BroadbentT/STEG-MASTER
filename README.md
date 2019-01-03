@@ -2,7 +2,7 @@
 
 |LANGUAGE|FILE|IMAGE|
 |--------|----|-----|
-|python|steg-cracker.py\picture.jpg
+|python|steg-cracker.py|picture.jpg
 
 
 
