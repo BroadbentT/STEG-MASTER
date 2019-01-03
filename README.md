@@ -7,9 +7,7 @@
 
 - [ ] Significant Bit - Still under development.
 
-Python script file to **decrypt** hidden data stored within images.
-
-Contains a range of tools used in the black art of steganography, tools that can be used seperately or via the master control program.
+Python script file to **decrypt** hidden data stored within images, contains a range of tools useful in the black art of steganography.
 
 ## CONSOLE DISPLAY
 ![Screenshot](picture4.png) 
