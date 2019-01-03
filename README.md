@@ -3,8 +3,7 @@
 | LANGUAGE | FILENAME | IMAGE |
 |--------|----|-----|
 |python|steg-cracker.py|picture.jpg
-||MD5 HASH||
-||c1a01b3e2cd3e2bd669edcd503fa45fc||
+||c1a01b3e2cd3e2bd669edcd503fa45fc - MD5||
 
 
 
