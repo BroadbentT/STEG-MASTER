@@ -3,7 +3,7 @@
 | LANGUAGE | FILENAME | COMMAND |
 |--------|----|-----|
 |python 3|steg-cracker.py|picture.jpg
-||c1a01b3e2cd3e2bd669edcd503fa45fc - md5||
+|| MD5 Hash - c1a01b3e2cd3e2bd669edcd503fa45fc ||
 
 - [ ] Significant Bit - Still under development.
 
