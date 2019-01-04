@@ -1,4 +1,4 @@
-# STEG-MASTER
+# PROJECT STEG-MASTER
 
 | LANGUAGE | FILENAME | COMMAND |
 |--------|----|-----|
