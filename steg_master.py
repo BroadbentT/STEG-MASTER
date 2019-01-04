@@ -467,14 +467,11 @@ while True:
 # -------------------------------------------------------------------------------------
 
     elif selection == '20':
-        count = 0
-        with open('directories.txt') as file:
-            for line in file:
-                directory = open("directories.txt", "r").readlines()[count].rstrip()
-                clutters = os.path.exists(directory)
-                if clutters == True:
-                    shutil.rmtree(directory)
-                count = count + 1
+        for loop in range (0, 8):
+            directory = open("directories.txt", "r").readlines()[loop].rstrip()
+            clutters = os.path.exists(directory)
+            if clutters == True:
+                shutil.rmtree(directory)
 
         clutters = os.path.exists('./' + filename + ".out")
         if clutters == True:
