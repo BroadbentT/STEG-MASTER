@@ -10,5 +10,5 @@
 Python script file to **decrypt** hidden data stored within images, contains a range of tools useful in the black art of steganography.
 
 ## CONSOLE DISPLAY
-![Screenshot](picture4.png) 
+![Screenshot](picture1.png) 
 
