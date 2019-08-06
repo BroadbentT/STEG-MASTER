@@ -1,4 +1,4 @@
-# STEG-MASTER
+# STEG MASTER
 
 | LANGUAGE | FILENAME | COMMAND |
 |--------|----|-----|
