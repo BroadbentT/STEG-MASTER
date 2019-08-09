@@ -2,7 +2,9 @@
 
 | LANGUAGE | FILENAME      | MD5HASH                          |
 |--------|----             |-----                             |
-| Python | steg-cracker.py | 01245f8b1d81936d7d1c6d30cb506f52 |
+| python | steg-cracker.py | 4aa9fbe8538301cdf65103aaffb0f1ea |
+| python | mask-1.py       | 3b05dffb03909d9390f5016862ddc5e7 |
+| python | mask-2.py       | f01ae7c9eb15d330ce59737661315493 |
 
 - [ ] Significant Bit - Still under development.
 
