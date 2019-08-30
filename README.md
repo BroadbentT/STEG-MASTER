@@ -1,5 +1,5 @@
 # STEG MASTER
-## A PYTHON UTILITY TOOL TO DECRYPYT HIDDEN DATA EMBEDDED WITHIN IMAGES.
+## A PYTHON UTILITY TOOL TO DECRYPT HIDDEN DATA EMBEDDED WITHIN IMAGES.
 
 | LANGUAGE  | FILENAME      | MD5HASH                            |
 |--------   |----             |-----                             |
