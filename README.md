@@ -1,4 +1,5 @@
 # STEG MASTER
+## A PYTHON UTILITY TOOL TO DECRYPYT HIDDEN DATA EMBEDDED WITHIN IMAGES.
 
 | LANGUAGE  | FILENAME      | MD5HASH                            |
 |--------   |----             |-----                             |
@@ -11,6 +12,6 @@
 
 Python script file to **decrypt** hidden data stored within images, contains a range of tools useful in the black art of steganography.
 
-## CONSOLE DISPLAY
+### CONSOLE DISPLAY
 ![Screenshot](picture2.png) 
 
