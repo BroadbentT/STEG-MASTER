@@ -1,7 +1,7 @@
 # STEG MASTER
 ## A PYTHON SCRIPT FILE TO FORENSICALLY INVESTIGATE AND EXTRACT HIDDEN DATA COVERTLY EMBEDDED WITHIN AN IMAGE.
 
-Usage: python steg-cracker.py iamge.jpg
+Usage: python steg-cracker.py image.jpg
 
 | LANGUAGE  | FILENAME      | MD5HASH                            |
 |--------   |----             |-----                             |
