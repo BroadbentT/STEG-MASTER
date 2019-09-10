@@ -1,11 +1,12 @@
 ./info/
 ./data/
-./tran/
+./pars/
 ./mask-1/
 ./mask-2/
 ./tidy/
 ./stat/
 ./diff/
+./bits/
 ---- END OF DIRECTORIES ----
 /usr/share/wordlists/rockyou.txt
 ---- END OF WORD LIST ----

@@ -36,17 +36,14 @@ if len(sys.argv) < 2:
    print "\nUse the command python steg_master.py picture.jpg\n"
    exit(True)
 
-fileName= sys.argv[1]
+rightfile = False
+fileName  = sys.argv[1]
+filextend = os.path.splitext(fileName)[1]
+imagefile = [".png", ".bmp", ".jpg", ".gif", ".tiff", ".jpeg", "wav"]
 
 if os.path.exists(fileName) == 0:
    print "\nFile " + fileName+ " was not found, did you spell it correctly?"
    exit(True)
-
-extTest = fileName[-3:]
-
-filextend = os.path.splitext(fileName)[1]
-imagefile = [".png", ".bmp", ".jpg", ".gif", ".tiff", ".jpeg"]
-rightfile = False
 
 for image in imagefile:
    if image == filextend.lower():
@@ -64,7 +61,7 @@ if rightfile == False:
 # Modified: N/A                                                               
 # -------------------------------------------------------------------------------------
 
-chk_list1 = ["steg", "exiftool", "hexeditor", "binwalk", "xpdf", "enscript", "stegcracker"]
+chk_list1 = ["exiftool", "hexeditor", "binwalk", "xpdf", "enscript", "stegcracker", "steghide"]
 installed = True
 
 for check in chk_list1:
@@ -84,16 +81,16 @@ if installed == False:
 # Details : Create functionall call to display my universal header.
 # -------------------------------------------------------------------------------------
 
-def header():
+def header(fileName, hashData):
    os.system("clear")
-   print " ____ _____ _____ ____    __  __    _    ____ _____ _____ ____   "
-   print "/ ___|_   _| ____/ ___|  |  \/  |  / \  / ___|_   _| ____|  _ \  "
-   print "\___ \ | | |  _|| |  _   | |\/| | / _ \ \___ \ | | |  _| | |_) | "
-   print " ___) || | | |__| |_| |  | |  | |/ ___ \ ___) || | | |___|  _ <  "
-   print "|____/ |_| |_____\____|  |_|  |_/_/   \_\____/ |_| |_____|_| \_\ "
-   print "                                                                 "
-   print "BY TERENCE BROADBENT MSc DIGITAL FORENSICS & CYBERCRIME ANALYSIS "
-   print "\nFilename : " + fileName
+   print " ____ _____ _____ ____    __  __    _    ____ _____ _____ ____    "
+   print "/ ___|_   _| ____/ ___|  |  \/  |  / \  / ___|_   _| ____|  _ \   "
+   print "\___ \ | | |  _|| |  _   | |\/| | / _ \ \___ \ | | |  _| | |_) |  "
+   print " ___) || | | |__| |_| |  | |  | |/ ___ \ ___) || | | |___|  _ <   "
+   print "|____/ |_| |_____\____|  |_|  |_/_/   \_\____/ |_| |_____|_| \_\  "
+   print "                                                                  "
+   print "BY TERENCE BROADBENT MSc DIGITAL FORENSICS & CYBERCRIME ANALYSIS\n"
+   print "Filename : " + fileName
    print "MD5 Hash : " + hashData
    print('-' * 63) + "\n"
 
@@ -123,14 +120,15 @@ menu['(02)']="Reformat Image."
 menu['(03)']="Hexfile Examination."
 menu['(04)']="Extract Data."
 menu['(05)']="Stegcrack Image."
-menu['(06)']="Parse Image Colours."
-menu['(07)']="Mask Image Colours."
+menu['(06)']="Parse Colours."
+menu['(07)']="Mask Colours."
 menu['(08)']="Compression Test."
-menu['(09)']="Compare Images."
-menu['(10)']="Signifant Bit Test."
+menu['(09)']="Create Differential."
+menu['(10)']="Create LSB Image."
 menu['(11)']="View Parsed."
-menu['(12)']="View Difference."
-menu['(20)']="Clean and Exit."
+menu['(12)']="View Differntial."
+menu['(13)']="View LSB"
+menu['(14)']="Clean and Exit."
 
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
@@ -140,7 +138,7 @@ menu['(20)']="Clean and Exit."
 # -------------------------------------------------------------------------------------
 
 while True: 
-   header()
+   header(fileName, hashData)
    options=menu.keys()
    options.sort()
    for entry in options: 
@@ -156,16 +154,16 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='1':
-      directory = open("directories.txt", "r").readlines()[0].rstrip()
-      if os.path.exists(directory):
-         shutil.rmtree(directory)
-      os.mkdir(directory)
-      os.system("exiftool '" + fileName + "' > " + directory + "'" + fileName + "'")
-      os.system("sed -i -e 1d " + directory + "'" + fileName + "'")
-      os.system("sed -i -e 2d " + directory + "'" + fileName + "'")
-      os.system("enscript -q " + directory + "'" + fileName + "' --output=- | ps2pdf - > " + directory + "Intelligence.pdf")
-      os.remove(directory + fileName)
-      os.system("xpdf " + directory + "Intelligence.pdf")
+      dirName = open("directories.txt", "r").readlines()[0].rstrip()
+      if os.path.exists(dirName):
+         shutil.rmtree(dirName)
+      os.mkdir(dirName)
+      os.system("exiftool '" + fileName + "' > " + dirName + "'" + fileName + "'")
+      os.system("sed -i -e 1d " + dirName + "'" + fileName + "'")
+      os.system("sed -i -e 2d " + dirName + "'" + fileName + "'")
+      os.system("enscript -q " + dirName + "'" + fileName + "' --output=- | ps2pdf - > " + dirName + "Intelligence.pdf")
+      os.remove(dirName + fileName)
+      os.system("xpdf " + dirName + "Intelligence.pdf")
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -213,16 +211,16 @@ while True:
 # -------------------------------------------------------------------------------------
 
    elif selection == '4':
-      directory = open("directories.txt", "r").readlines()[1].rstrip()
-      if os.path.exists(directory):
-         shutil.rmtree(directory)
-      os.mkdir(directory)        
+      dirName = open("directories.txt", "r").readlines()[1].rstrip()
+      if os.path.exists(dirName):
+         shutil.rmtree(dirName)
+      os.mkdir(dirName)        
       os.system("binwalk -b '" + fileName + "'")
-      os.system("foremost -Q '" + fileName + "' -o " + directory)
-      os.system("binwalk -q -e -V -C '" + directory + fileName + "'")
-      os.system("binwalk -q -D '.sql:myd:myisamchk' '" + fileName + "' -C '" + directory + fileName + "'") #myisamchk command
-      os.system("strings '" + fileName + "' > " + directory + "/strings.txt")
-      print "Extracted files have been exported to directory " + directory + "..."        
+      os.system("foremost -Q '" + fileName + "' -o " + dirName)
+      os.system("binwalk -q -e -V -C '" + dirName + fileName + "'")
+      os.system("binwalk -q -D '.sql:myd:myisamchk' '" + fileName + "' -C '" + dirName + fileName + "'") #myisamchk command
+      os.system("strings '" + fileName + "' > " + dirName + "/strings.txt")
+      print "Extracted files have been exported to dirName " + dirName + "..."
       raw_input("Press any key to continue...")
 
 # ------------------------------------------------------------------------------------- 
@@ -234,26 +232,35 @@ while True:
 # -------------------------------------------------------------------------------------
 
    elif selection == '5':
-      quicktest = os.path.exists("'" + fileName + ".out'")
-      if quicktest == False:
-         print "Please wait, this could take sometime..."
-         dictionary = open("directories.txt", "r").readlines()[9].rstrip()
-         os.system("stegcracker '" + fileName + "' " + dictionary + " > F1.txt > /dev/null 2>&1")
-         print "here!"
-         os.system("tail -2 F1.txt > F2.txt")
-         os.system("awk '/password:/{print $NF}' F2.txt > F3.txt")
-         password = open("F3.txt").readline().rstrip()           
-         os.remove('./F1.txt')
-         os.remove('./F2.txt')
-         os.remove('./F3.txt')            
-         if password != "":
-            print "The password is '" + password + "'..."
-            print "An extraction file has been written to " + fileName + ".out..."
+      filextend = os.path.splitext(fileName)[1]
+      imagefile = [".jpg", ".jpeg", ".bmp", ".gif", ".wav", ".au"]
+      rightfile = False
+      for image in imagefile:
+         if image == filextend.lower():
+            rightfile = True
+      if rightfile == True:
+         quicktest = os.path.exists("'" + fileName + ".out'")
+         if quicktest == False:
+            print "\nPlease wait, this could take sometime..."
+            dictionary = open("directories.txt", "r").readlines()[10].rstrip()
+            os.system("stegcracker '" + fileName + "' " + dictionary + " > F1.txt > /dev/null 2>&1")
+            os.system("tail -2 F1.txt > F2.txt")
+            os.system("awk '/password:/{print $NF}' F2.txt > F3.txt")
+            password = open("F3.txt").readline().rstrip()           
+            os.remove('./F1.txt')
+            os.remove('./F2.txt')
+            os.remove('./F3.txt')            
+            if password != "":
+               print "The password is '" + password + "'..."
+               print "An extraction file has been written to " + fileName + ".out..."
+            else:
+               print "Password file exhausted..."
          else:
-            print "Password file exhausted..."
+            print "\nThe extraction file already exists in this dirName..."
+         raw_input("Press any key to continue...")
       else:
-         print "\nThe extraction file already exists in this directory..."
-      raw_input("Press any key to continue...")
+         print "\nUnsupported file type..."
+         raw_input("Press any key to continue...")
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -264,14 +271,14 @@ while True:
 # -------------------------------------------------------------------------------------
 
    elif selection == '6': 
-      directory = open("directories.txt", "r").readlines()[2].rstrip()
-      if os.path.exists(directory):
-         shutil.rmtree(directory)
-      os.mkdir(directory)
+      dirName = open("directories.txt", "r").readlines()[2].rstrip()
+      if os.path.exists(dirName):
+         shutil.rmtree(dirName)
+      os.mkdir(dirName)
       colours = ["red", "green", "blue", "cyan", "magenta", "yellow", "black", "white"]
       for paint in colours:
-         os.system("convert '" + fileName + "' -transparent " + paint + " '" + directory + paint + "-" + fileName + "'")
-      print "\nAll images have been exported to directory " + directory + "..." 
+         os.system("convert '" + fileName + "' -transparent " + paint + " '" + dirName + paint + "-" + fileName + "'")
+      print "\nAll images have been exported to dirName " + dirName + "..." 
       raw_input("Press any key to continue...")
 
 # ------------------------------------------------------------------------------------- 
@@ -296,7 +303,7 @@ while True:
          os.mkdir(directory2)
          for chunk in range (0,255):
             os.system("python mask-1.py '" + fileName + "' " + directory1 + "pixilmask-" + str(chunk) + ".png " + str(chunk))
-         print "\nCheck the files exported to directory " + directory1 + "..." 
+         print "\nCheck the files exported to dirName " + directory1 + "..." 
          print "Find an image that seems to reveal hidden information, such as image 127..."
          print "Enter that value below for further in-depth analysis, or any other key to quit..."  
          userinput = raw_input("")
@@ -308,14 +315,14 @@ while True:
             for chunk in range (0,129):
                cmd = " " + directory2 + "range-color-" + str(userinput) + "+" + str(chunk) + ".png " + str(chunk) + " " + str(userinput)
                os.system("python mask-2.py '" + fileName + "'" + cmd)
-            print "Now check the exported files in directory " + directory2 + "..."
+            print "Now check the exported files in dirName " + directory2 + "..."
       raw_input("Press any key to continue...")
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
 # Version : 1.0                                                                
-# Details : Menu option selected - Conduct a quick statistical test.
+# Details : Menu option selected - Conduct a statistical image compression test.
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
@@ -346,7 +353,7 @@ while True:
                   count = count + 1
                   os.system("cp " + calcfile + " " + directory3)
          print "" + str(count) + " images were found to be of interest..."
-         print "They have been placed in the " + directory3 + " directory..."
+         print "They have been placed in the " + directory3 + " dirName..."
       else:
          print "You need to option (7) first..."
       raw_input("Press any key to continue...")
@@ -360,11 +367,11 @@ while True:
 # -------------------------------------------------------------------------------------
 
    elif selection == '9':
-      directory = open("directories.txt", "r").readlines()[7].rstrip()
-      if os.path.exists(directory):
-         shutil.rmtree(directory)
-      os.mkdir(directory)      
-      os.system("cp '" + fileName + "' " + "'" + directory + fileName + "'")
+      dirName = open("directories.txt", "r").readlines()[7].rstrip()
+      if os.path.exists(dirName):
+         shutil.rmtree(dirName)
+      os.mkdir(dirName)      
+      os.system("cp '" + fileName + "' " + "'" + dirName + fileName + "'")
       current_extension = os.path.splitext(fileName)[1]
       newimage = fileName[:fileName.index(current_extension)]
       newimage = newimage + "-stripped" + current_extension
@@ -378,19 +385,19 @@ while True:
          if os.path.exists(newimage) == 0:
             print "File " + newimage + " was not found, did you spell it correctly?"
          else:
-            os.system("cp '" + newimage + "' " + directory + newimage)
+            os.system("cp '" + newimage + "' " + dirName + newimage)
             option = 1 
       if user_option == "2":
          print "OK, I will create a second stripped and flattened image for you..."
-         os.system("convert -strip -flatten '" + fileName + "' '" + directory + newimage + "'")
+         os.system("convert -strip -flatten '" + fileName + "' '" + dirName + newimage + "'")
          option = 1       
       if option == 1:
          print "Comparing images and creating differential image..."
-         image1 = directory + fileName
-         image2 = directory + newimage
-         image3 = directory + "difference" + current_extension
+         image1 = dirName + fileName
+         image2 = dirName + newimage
+         image3 = dirName + "difference" + current_extension
          os.system("compare -density 300 '" + image1 + "' '" + image2 + "' -compose src '" + image3 + "'")
-         print "All images have been placed in directory " + directory + "..."
+         print "All images have been placed in directory " + dirName + "..."
       else:
          print "File " + user_option + " was not found..."
       raw_input("Press any key to continue...")
@@ -399,65 +406,90 @@ while True:
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
 # Version : 1.0                                                                
-# Details : Menu option selected - View TransColour images.
+# Details : Menu option selected - Create least signicant bit image (lsb = 2).
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
    elif selection == '10':
-      print "\nOption not currently implemented..."
+      dirName = open("directories.txt", "r").readlines()[8].rstrip()
+      if os.path.exists(dirName):
+         shutil.rmtree(dirName)
+      os.mkdir(dirName)      
+      os.system("stegolsb stegdetect -i '" + fileName + "' -n 2")
+      lsbFile = fileName[:-4]
+      lsbFile = lsbFile + "_2LSBs"
+      lsbFile = lsbFile + fileName[-4:]
+      os.system("mv '" + lsbFile + "' " + dirName)
+      print "\nThe LSB image has been placed in directory " + dirName + "..." 
       raw_input("Press any key to continue...")
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
 # Version : 1.0                                                                
-# Details : Menu option selected - View TransColour images.
+# Details : Menu option selected - View parsed images.
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
    elif selection == '11':
-      directory = open("directories.txt", "r").readlines()[2].rstrip()
-      quicktest = os.path.exists(directory)
+      dirName = open("directories.txt", "r").readlines()[2].rstrip()
+      quicktest = os.path.exists(dirName)
       if quicktest == False:
          print "\nYou need to run option (6) first..."
          raw_input("Press any key to continue...")
       else:
-         os.system("eog --slide-show " + directory)
+         os.system("eog --slide-show " + dirName)
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
 # Version : 1.0                                                                
-# Details : Menu option selected - View DiffImage images.
+# Details : Menu option selected - View diferential images.
 # -------------------------------------------------------------------------------------
 
    elif selection == '12':
-      directory = open("directories.txt", "r").readlines()[7].rstrip()
-      quicktest = os.path.exists(directory)
+      dirName = open("directories.txt", "r").readlines()[7].rstrip()
+      quicktest = os.path.exists(dirName)
       if quicktest == False:
          print "\nYou need to run option (9) first..."
          raw_input("Press any key to continue...")
       else:
-         os.system("eog --slide-show " + directory)
+         os.system("eog --slide-show " + dirName)
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
 # Version : 1.0                                                                
-# Details : Menu option selected - Tidy up the directory.
+# Details : Menu option selected - View LSB image.
+# -------------------------------------------------------------------------------------
+
+   elif selection == '13':
+      dirName = open("directories.txt", "r").readlines()[8].rstrip()
+      quicktest = os.path.exists(dirName)
+      if quicktest == False:
+         print "\nYou need to run option (10) first..."
+         raw_input("Press any key to continue...")
+      else:
+         os.system("eog --slide-show " + dirName)
+
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Menu option selected - Clean and exit.
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-   elif selection == '20':
-      for loop in range (0, 8):
-         directory = open("directories.txt", "r").readlines()[loop].rstrip()
-         clutters = os.path.exists(directory)
-         if clutters == True:
-            shutil.rmtree(directory)
-      clutters = os.path.exists("'" + fileName + ".out'")
-      if clutters == True:
+   elif selection == '14':
+      for loop in range (0, 9):
+         dirName = open("directories.txt", "r").readlines()[loop].rstrip()
+         clutter = os.path.exists(dirName)
+         if clutter == True:
+            shutil.rmtree(dirName)
+      clutter = os.path.exists("'" + fileName + ".out'")
+      if clutter == True:
          os.remove("'" + fileName+ ".out'")        
-      print "\nAll system generated files have been removed..."
+      print "\nAll system generated files and directories have been sucessfully removed...\n"
       exit(True)
 
 #Eof
