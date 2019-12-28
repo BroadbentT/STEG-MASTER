@@ -11,8 +11,8 @@ Usage: python steg-cracker.py image.jpg
 | text file | directories.txt | a0c57d049c5c9e5def378559a4ca4539 |                        |
 
 
-![Screenshot](picture2.png)
 
+![Screenshot](picture2.png)
     [+] Programming stage.
     [-] Testing stage.
 
