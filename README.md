@@ -10,9 +10,8 @@ Usage: python steg-cracker.py image.jpg
 | python    | mask-2.py       | f01ae7c9eb15d330ce59737661315493 |                        |
 | text file | directories.txt | a0c57d049c5c9e5def378559a4ca4539 |                        |
 
-
-
 ![Screenshot](picture2.png)
+
     [+] Programming stage.
     [-] Testing stage.
 
